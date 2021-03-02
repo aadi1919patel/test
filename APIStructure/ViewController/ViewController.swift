@@ -15,18 +15,41 @@ class ViewController: UIViewController {
     var persons:[Person] = []
     
     var db:DBHelper = DBHelper()
+ 
+    
+    //MARK:- Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.setupInitialViews()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    //MARK:- IBActions
+    @IBAction func btnMenuTapped(_ sender: Any) {
+        
+    }
+    
+    @IBAction func btnAddTapped(_ sender: Any) {
+        let vc = AddDocumentVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+   
+    //MARK:- Functions
+    func setupInitialViews() {
         
         let imgLogo = #imageLiteral(resourceName: "Logo")
-//        let compressionQuality: CGFloat = 0.4
-//        guard let data = imgLogo.toJpegData(compressionQuality: compressionQuality) else { return }
-//        printSize(of: data)
-//
-//        let options: NSDictionary =     [
-//                                            kCGImagePropertyHasAlpha: true,
-//                                            kCGImageDestinationLossyCompressionQuality: compressionQuality
-//                                        ]
+
         
         let imageData = imgLogo.pngData()
         //Use image name from bundle to create NSData
@@ -42,8 +65,6 @@ class ViewController: UIViewController {
         persons = db.read()
         print(persons)
         self.GetCategory()
-      
-        // Do any additional setup after loading the view.
     }
 
 
